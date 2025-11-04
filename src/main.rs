@@ -1,9 +1,12 @@
+#![allow(unused)]
+
 use std::net::Ipv4Addr;
+use crate::server::server_init;
 
 mod server;
 mod commands;
 
-const MAX_USERNAME_LEN = 32;
+const MAX_USERNAME_LEN:usize = 32;
 
 #[derive(Debug)]
 struct Client {
@@ -34,4 +37,5 @@ impl Client {
 
 fn main() {
     println!("Hello, world!");
+    server_init();
 }

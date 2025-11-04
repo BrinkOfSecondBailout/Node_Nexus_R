@@ -1,4 +1,6 @@
-struct Command_Handler {
+use crate::Client;
+
+struct CommandHandler {
     cmd_name: String,
     callback_function: Callback,
 }
