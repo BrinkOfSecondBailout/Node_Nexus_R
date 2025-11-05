@@ -1,4 +1,5 @@
-use std::net::TcpListener;
+use std::net::{TcpListener, TcpStream};
+use std::io::prelude::*;
 
 
 const MAX_CONNECTIONS: i32 = 10;
@@ -21,10 +22,20 @@ impl HttpRequest {
     
 }
 
+pub fn handle_connection(mut stream: TcpStream) {
+    let mut buffer = [0; 1024];
+    stream.read(&mut buffer).unwrap();
+    println!(
+        "Request: {}",
+        String::from_utf8_lossy(&buffer[..])
+    )
+}
+
 pub fn server_init() {
     let listener = TcpListener::bind(LOCAL_HOST).unwrap();
+    println!("Server running and listening!");
     for stream in listener.incoming() {
         let stream = stream.unwrap();
-        println!("Connection established!");
+        handle_connection(stream);
     }
 }

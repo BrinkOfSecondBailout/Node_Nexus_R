@@ -1,10 +1,9 @@
 #![allow(unused)]
 
-use std::net::Ipv4Addr;
-use crate::server::server_init;
-
 mod server;
 mod commands;
+use std::net::Ipv4Addr;
+use crate::server::server_init;
 
 const MAX_USERNAME_LEN:usize = 32;
 
